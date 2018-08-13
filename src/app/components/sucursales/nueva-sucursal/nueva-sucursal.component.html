@@ -1,0 +1,170 @@
+
+<!-- titulo -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-building-o"></i>  Nueva Sucursal</h3>
+    </div>
+</div>
+
+
+<!-- Contenido  -->
+<div class="row">
+    <div class="col-lg-8">
+        <form #sucursalForm="ngForm" (ngSubmit)="addSucursal();limpiarForm(sucursalForm)"  class="" id="sucursalForm">
+            <label>
+                Nombre: 
+                <span class="label label-danger" *ngIf="!nombre.valid && nombre.touched">
+                    El nombre no es valido
+                </span> 
+             </label>
+            <input type="text"   class="form-control" name="nombre" required
+                #nombre="ngModel" [(ngModel)]="nuevaSucursal.nombre">
+
+            <label>
+                Horario de la sucursal(Abierto):
+                <span class="label label-danger" *ngIf="!horaInicio.valid && horaInicio.touched">
+                    La hora de inicio no es valida
+                </span>  
+            </label>
+            <input type="time" class="form-control" name="horaInicio" required
+                #horaInicio="ngModel" [(ngModel)]="nuevaSucursal.hora_inicio" >
+    
+            <label>
+                Horario de la sucursal(Cerrado):
+                <span class="label label-danger" *ngIf="!horaFin.valid && horaFin.touched">
+                    La hora de cerrar no es valida
+                </span>  
+            </label>
+            <input type="time" class="form-control" name="horaFin" required
+                #horaFin="ngModel" [(ngModel)]="nuevaSucursal.hora_fin" >
+    
+            
+            <label>
+                Telefono de la Sucursal: 
+                <span class="label label-danger" *ngIf="!telefono.valid && telefono.touched">
+                    El telefono no es valido
+                </span> 
+            </label>
+            <input type="tel"  class="form-control" id="telefono" name="telefono"  placeholder="(xxx)yyy-zzzz" pattern="^\([0-9]{3}\)[0-9]{3}-[0-9]{4}" maxlength="13" minlength="13"  required
+                #telefono="ngModel" [(ngModel)]="nuevaSucursal.telefono" (keypress)="validarTel()">
+  
+            <label>
+                Calle y numero: 
+                <span class="label label-danger" *ngIf="!calleNum.valid && calleNum.touched">
+                    La calle y numero no son validas
+                </span> 
+             </label>
+            <input type="text"   class="form-control" name="callenum" required
+                #calleNum="ngModel" [(ngModel)]="nuevaSucursal.callenum" >
+  
+            <label>
+                Colonia: 
+                <span class="label label-danger" *ngIf="!colonia.valid && colonia.touched">
+                    La colonia no es valida
+                </span> 
+             </label>
+            <input type="text"   class="form-control" name="colonia" required
+                #colonia="ngModel" [(ngModel)]="nuevaSucursal.colonia" >
+  
+            <label>
+                Población: 
+                <span class="label label-danger" *ngIf="!poblacion.valid && poblacion.touched">
+                    La poblacion no es valida
+                </span> 
+             </label>
+            <input type="text"  class="form-control" name="poblacion" required
+                #poblacion="ngModel" [(ngModel)]="nuevaSucursal.poblacion" >
+  
+            <label>
+                Municipio: 
+                <span class="label label-danger" *ngIf="!municipio.valid && municipio.touched">
+                    El municipio no es valido
+                </span> 
+             </label>
+            <input type="text" class="form-control" name="municipio" required
+                #municipio="ngModel" [(ngModel)]="nuevaSucursal.municipio" >
+  
+            <label>
+                Estado:
+                <span class="label label-danger" *ngIf="!estado.valid && estado.touched">
+                    El estado no es valido
+                </span> 
+             </label>
+            <select name="estados"   class="form-control m-bot15" required>
+                <option value="AGUASCALIENTES">Aguascalientes</option>
+                        <option value="BAJA CALIFORNIA">Baja California</option>
+                        <option value="BAJA CALIFORNIA SUR">Baja California Sur</option>
+                        <option value="CAMPECHE">Campeche</option>
+                        <option value="COAHUILA DE ZARAGOZA">Coahuila de Zaragoza</option>
+                        <option value="COLIMA">Colima</option>
+                        <option value="CHIAPAS">Chiapas</option>
+                        <option value="CHIHUAHUA">Chihuahua</option>
+                        <option value="DISTRITO FEDERAL">Distrito Federal</option>
+                        <option value="DURANGO">Durango</option>
+                        <option value="GUANAJUATO">Guanajuato</option>
+                        <option value="GUERRERO">Guerrero</option>
+                        <option value="HIDALGO">Hidalgo</option>
+                        <option value="JALISCO">Jalisco</option>
+                        <option value="MEXICO">México</option>
+                        <option value="MICHOACAN DE OCAMPO">Michoacán de Ocampo</option>
+                        <option value="MORELOS">Morelos</option>
+                        <option value="NAYARIT">Nayarit</option>
+                        <option value="NUEVO LEON">Nuevo León</option>       
+                        <option value="OAXACA">Oaxaca</option>
+                        <option value="PUEBLA">Puebla</option>
+                        <option value="QUERETARO">Querétaro</option>
+                        <option value="QUINTANA ROO">Quintana Roo</option>
+                        <option value="SAN LUIS POTOSI">San Luis Potosí</option>
+                        <option value="SINALOA">Sinaloa</option>
+                        <option value="SONORA">Sonora</option>
+                        <option value="TABASCO">Tabasco</option>
+                        <option value="TAMAULIPAS">Tamaulipas</option>
+                        <option value="TLAXCALA">Tlaxcala</option>
+                        <option value="VERACRUZ">Veracruz</option>
+                        <option value="YUCATAN">Yucatán</option>
+                        <option value="ZACATECAS">Zacatecas</option>
+            </select>
+            <label>
+                Codigo Postal: 
+                <span class="label label-danger" *ngIf="!cp.valid && cp.touched">
+                    El municipio no es valido
+                </span> 
+            </label>
+            <input type="text" class="form-control" name="cp" required
+                #cp="ngModel" [(ngModel)]="nuevaSucursal.cp" >
+
+            
+            <div class=" row">
+                <div class="col-lg-4">
+                    <label title="Para dar de alta a una sucursal se requiere almenos una red social">
+                            Red Social: 
+                        <span class="label label-danger" *ngIf="!urll.valid && urll.touched">
+                            La url no es valida
+                        </span> 
+                    </label>
+                    <select name="nombreRed" class="form-control" id=""
+                        #nombreRed="ngModel" [(ngModel)]="nombre_red" >
+                        <option value="FACEBOOK">Facebook</option>
+                        <option value="INSTAGRAM">Instagram</option>
+                        <option value="TWITTER">Twitter</option>
+                        <option value="WHATSAPP">Whatsapp</option>
+                    </select> 
+                </div>    
+                
+               <div class="col-lg-6">
+                    <label>Url </label>
+                    <input type="text" class="form-control" name="urll" required
+                        #urll="ngModel" [(ngModel)]="url" >         
+               </div>  
+            </div>
+            
+            
+
+            <br>
+            <!-- boton guardar -->
+            <input  type="submit" value="Registrar" [disabled]="!sucursalForm.form.valid"  class="btn btn-success" name="guardar" title="Registrar" >
+            <a class="btn btn-primary" style="margin-left: 3px" (click)="limpiarForm(sucursalForm);">Limpiar Formulario</a>
+ 
+       </form>
+   </div>
+ </div>            

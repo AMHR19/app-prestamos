@@ -1,0 +1,126 @@
+<div id="cm-menu">
+  <nav class="cm-navbar cm-navbar-primary">
+      <!-- <div class="cm-flex"><a href="index.html" class="cm-logo"></a></div> -->
+      <!-- <div style="width: 200px; height: 200px;"> -->
+            <img src="./assets/img/nuevo.png" style=" margin-left:5%; width: 160px; height: 50px;"/>
+      <!-- </div> -->
+      <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
+  </nav>
+  <div id="cm-menu-content">
+      <div id="cm-menu-items-wrapper">
+          <div id="cm-menu-scroller">
+              <ul class="cm-menu-items">
+                  <li><a [routerLink]="['/home']" [routerLinkActive]="['activado']" class="sf-house">Inicio</a></li>
+                  <li class="cm-submenu">
+                      <a class="sf-institution">Empresas <span class="caret"></span></a>
+                        <ul>
+                            <li><a [routerLink]="['/lista-empresas']" [routerLinkActive]="['activado']">Lista de empresas</a></li>
+                            <li><a [routerLink]="['/nueva-empresa']" [routerLinkActive]="['activado']">Nueva empresa</a></li>
+                        </ul>
+                  </li>
+
+                  <li class="cm-submenu">
+                        <a class="sf-building">Sucursales <span class="caret"></span></a>
+                          <ul>
+                              <li><a [routerLink]="['/lista-sucursales']" [routerLinkActive]="['activado']">Lista de sucursales</a></li>
+                              <li><a [routerLink]="['/nueva-sucursal']" [routerLinkActive]="['activado']">Nueva sucursal</a></li>
+                          </ul>
+                 </li>
+
+                  <li class="cm-submenu">
+                        <a class="sf-user-male">Empleados <span class="caret"></span></a>
+                          <ul>
+                              <li><a [routerLink]="['/lista-empleados']" [routerLinkActive]="['activado']">Lista de empleados</a></li>
+                              <li><a [routerLink]="['/nuevo-empleado']" [routerLinkActive]="['activado']">Nuevo empleado</a></li>
+                          </ul>
+                    </li>
+
+
+                    <li class="cm-submenu">
+                            <a class=" sf-map-marker">Zonas <span class="caret"></span></a>
+                              <ul>
+                                  <li><a [routerLink]="['/lista-zonas']" [routerLinkActive]="['activado']">Lista de zonas</a></li>
+                                  <li><a [routerLink]="['/nueva-zona']" [routerLinkActive]="['activado']">Nueva zona</a></li>
+                              </ul>
+                    </li>
+
+                    <li class="cm-submenu">
+                            <a class="sf-profile-group">Clientes <span class="caret"></span></a>
+                                <ul>
+                                    <li><a [routerLink]="['/lista-clientes']" [routerLinkActive]="['activado']">Lista de clientes</a></li>
+                                    <li><a [routerLink]="['/nuevo-cliente']" [routerLinkActive]="['activado']">Nuevo(a) cliente</a></li>
+                                </ul>
+                    </li>
+
+                    <li class="cm-submenu">
+                            <a class="sf-shop">Negocios <span class="caret"></span></a>
+                              <ul>
+                                  <li><a [routerLink]="['/lista-negocios']" [routerLinkActive]="['activado']">Lista de negocios</a></li>
+                                  <li><a [routerLink]="['/nuevo-negocio']" [routerLinkActive]="['activado']">Nuevo negocio</a></li>
+                              </ul>
+                    </li>
+
+                    <li class="cm-submenu">
+                            <a class=" sf-search">Investigaciones Crediticias <span class="caret"></span></a>
+                              <ul>
+                                  <li><a [routerLink]="['/inv-pendientes']" [routerLinkActive]="['activado']">Inv. pendientes</a></li>
+                                  <li><a [routerLink]="['/inv-realizadas']" [routerLinkActive]="['activado']">Inv. realizadas</a></li>
+                              </ul>
+                    </li>
+
+                    <li class="cm-submenu">
+                            <a class="sf-handshake">Prestamos <span class="caret"></span></a>
+                              <ul>
+                                  <li><a [routerLink]="['/lista-prestamos']" [routerLinkActive]="['activado']">Lista de prestamos</a></li>
+                                  <li><a [routerLink]="['/nuevo-prestamo']" [routerLinkActive]="['activado']">Nuevo prestamo</a></li>
+                                  <li><a [routerLink]="['/aprobar-prestamo']" [routerLinkActive]="['activado']">Aprobar prestamo</a></li>
+                                  <li><a [routerLink]="['/tipo-credito']" [routerLinkActive]="['activado']">Tipo crédito</a></li>
+                              </ul>
+                    </li>
+
+                    <li class="cm-submenu">
+                            <a class="sf-money">Cobros <span class="caret"></span></a>
+                              <ul>
+                                  <li><a [routerLink]="['/lista-cobros']" [routerLinkActive]="['activado']">Lista de cobros</a></li>
+                                  <li><a [routerLink]="['/nuevo-cobro']" [routerLinkActive]="['activado']">Cobros por realizar</a></li>
+                                  <li><a [routerLink]="['/pagos-atrazados']" [routerLinkActive]="['activado']">Pagos atrazados</a></li>
+
+                              </ul>
+                    </li> 
+                </ul>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<header id="cm-header">
+  <nav class="cm-navbar cm-navbar-primary">
+      <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
+      <div class="cm-flex">
+          <h1>Gestor de prestamos</h1> 
+      </div>
+      <div class="dropdown pull-right">
+          <button class="btn btn-primary md-account-circle-white" data-toggle="dropdown"></button>
+          <ul class="dropdown-menu">
+              <li class="disabled text-center">
+                  <a style="cursor:default;"><strong>John Smith</strong></a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                  <a href="login.html"><i class="fa fa-fw fa-sign-out"></i>Cerrar sesión</a>
+              </li>
+          </ul>
+      </div>
+  </nav>
+</header>
+
+<div id="global">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-body"> 
+                    <router-outlet> </router-outlet>
+            </div>
+        </div>
+    </div>
+    <footer class="cm-footer"><span class="pull-left">Powered By: SGV</span><span class="pull-right">&copy; PAOMEDIA SARL</span></footer>
+</div>

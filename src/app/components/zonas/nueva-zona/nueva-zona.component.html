@@ -1,0 +1,52 @@
+
+<!-- titulo -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-building-o"></i>  Nueva Zona</h3>
+    </div>
+
+   <!-- Contenido  --> 
+<div class="row">
+  <div class="col-lg-8">
+  <form #zonasForm="ngForm"  role="form">
+      <br>
+      <label>
+          Nombre: 
+      </label>
+      <input type="text"  class="form-control" name="nombre" required> 
+
+      <label>
+          Colonia: 
+      </label>
+      <input type="text"  class="form-control" name="callenum" required>
+      
+      <label>
+          sucursal: 
+      </label>
+      <select name="idsucursal" class="form-control m-bot15 " required>
+              <option value=" "></option>
+      </select>
+
+      <label>
+          cobrador: 
+      </label>
+      <select name="idempleado"   class="form-control m-bot15 " required>
+          <option value=""></option>
+      </select>
+
+      <label>
+          Status:
+      </label>
+      <select name="status"  class="form-control m-bot15 " required>
+              <option value="Activa">Activa</option>
+              <option value="Inactiva">Inactiva</option>
+      </select>
+
+      <br><br>
+          <!-- boton guardar -->
+      <input  type="submit" value="Guardar cambios" [disabled]="!zonasForm.form.valid" class="btn btn-success" name="guardar" title="guardar cambios" >
+      <button class="btn btn-primary" style="margin-left: 3px">Limpiar Formulario</button>
+  </form>
+
+</div>
+</div>        

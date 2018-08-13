@@ -1,0 +1,102 @@
+
+<!-- titulo -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-bank"></i>  Lista de Empresas</h3>
+    </div>
+</div>
+
+<!-- Contenido  -->
+<div class="row">
+    <div class="col-lg-12">
+            <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel">
+                        <div class="table-responsive">
+                        <table class="table">
+                        <tbody>
+                        <tr>
+                            <th><i class="fa fa-building"></i>Razón social</th>
+                            <th><i class="fa fa-home"></i>Dirección</th>
+                            <th><i class="fa fa-info"></i>Descripción</th>
+                            <th><i class="fa fa-info"></i>RFC</th>
+                            <th><i class="fa fa-pencil"></i>Editar</th> 
+                        </tr>
+                        <tr *ngFor="let e of empresas">
+                            <th>{{e.razon_social}}</th>
+                            <th>{{e.direccion}}</th>
+                            <th>{{e.descripcion}}</th>
+                            <th>{{e.rfc}}</th>
+                            <th><a class="btn btn-yellow" (click)="seleccionar(e)" data-toggle="modal" data-target="#editarEmpresa"><i class="fa fa-pencil"></i></a></th>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                    </section>
+                </div> 
+            </div>
+     </div>  
+</div>      
+
+
+
+<div id="editarEmpresa" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Editar datos de empresa
+                        <a class="anchorjs-link" href="#myModalLabel"><span class="anchorjs-icon"></span></a>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form #empresaForm="ngForm" class="" id="empresaForm">
+                        <label>
+                            Razon Social: 
+                            <span *ngIf="!razonSocial.valid && razonSocial.touched"class="label label-danger">
+                                Razon social no valida
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" name="razonSocial" required
+                            #razonSocial="ngModel" [(ngModel)]="empresaSeleccionada.razon_social">
+
+                        <label>
+                            Dirección: 
+                            <span *ngIf="!direccion.valid && direccion.touched" class="label label-danger">
+                                direccion no valida
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" name="direccion" required
+                            #direccion="ngModel" [(ngModel)]="empresaSeleccionada.direccion">
+            
+                        <label>
+                            Descripción: 
+                            <span *ngIf="!descripcion.valid && descripcion.touched" class="label label-danger">
+                                descripcion no valida
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" name="descripcion" required
+                            #descripcion="ngModel" [(ngModel)]="empresaSeleccionada.direccion">
+
+                        <label>
+                            RFC: 
+                            <span *ngIf="!rfc.valid && rfc.touched" class="label label-danger">
+                                RFC no valido
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" name="rfc" required
+                            #rfc="ngModel" [(ngModel)]="empresaSeleccionada.rfc">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" (click)="updateEmpresa();" >Guardar cambios</button>
+                    <button type="button" class="btn btn-gray">Limpiar formulario</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+        

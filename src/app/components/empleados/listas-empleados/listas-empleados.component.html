@@ -1,0 +1,312 @@
+
+<!-- titulo -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-user"></i>  Lista de Empleados</h3>
+    </div>
+</div>
+<br> 
+<!--busquedaXfiltros--> 
+<div class="row">
+
+    <div class="col-xs-6">
+        <label>Buscar por nombre:</label><br>
+        <input type="text" class="form-control" placeholder="Nombre del empleado" title="Nombre del empleado a buscar">
+        <br>
+    </div>
+
+    <div class="col-xs-6">
+        <label>Ver por sucursal: </label>
+        <select name="sucursal" class="form-control">
+            <option value="$">Todas</option>
+            <option value="" >sucursales</option>
+        </select>
+    </div>
+    
+    <!-- <br><br>
+    <br><br>
+    <div class="col-xs-8">
+        <label>Ver por status:</label>
+        <div class="btn-group btn-group-justified">
+                <a class="btn btn-primary" >Ver todos</a>
+                <a class="btn btn-success" >Ver activos</a>
+                <a class="btn btn-gray" >Ver inactivos</a>
+        </div>
+    </div>  -->
+
+</div> 
+
+<!-- Tabla de empleados -->
+<div class="row" >
+    <div class="col-lg-12">
+        <section class="panel"> 
+        <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th><i class="fa fa-user"></i> Nombre</th>
+                <th><i class="fa fa-mobile"></i> Telefono</th>
+                <th><i class="fa fa-briefcase"></i> Puesto</th>
+                <th><i class="fa fa-building"></i> Sucursal</th>
+                <th><i class="fa fa-check"></i> Estatus</th>
+                <th><i class="fa fa-check"></i> Derechos Esp.</th>
+                <th><i class="fa fa-user"></i> Usuario</th>
+                <th><i class="fa fa-plus"></i> Opciones</th>
+            </tr> 
+            <tr *ngFor="let e of empleados;">
+                <th>{{e.nombres}}</th>
+                <th>{{e.puesto}}</th>
+                <th>{{e.sucursal_nombre}}</th>
+                <th>{{e.status}}</th>
+                <th>{{e.derecho_esp}}</th>
+                <th>{{e.status}}</th>
+                <th>
+                    <a class="btn btn-gray" (click)="seleccionar(e)" data-toggle="modal" data-target="#verUsuario"><i class="fa fa-eye"></i></a>
+                    <!-- <a class="btn btn-yellow" (click)="seleccionar(e)" data-toggle="modal" data-target="#editarUsuario"><i class="fa fa-pencil"></i></a> -->
+                </th>
+                <th>
+                    <a class="btn btn-gray" (click)="seleccionar(e)" data-toggle="modal" data-target="#detalles"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-yellow" (click)="seleccionar(e)" data-toggle="modal" data-target="#editar"><i class="fa fa-pencil"></i></a>
+                </th>
+            </tbody>
+        </table>
+        </div>
+        </section>
+    </div> 
+</div>
+
+<!-- -********************************************************************************--->
+
+<div id="detalles" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Detalles de empleado
+                    <a class="anchorjs-link" href="#myModalLabel"><span class="anchorjs-icon"></span></a>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <b>Nombre del empleado</b>
+                <p>{{empleadoSeleccionado.nombres}} {{empleadoSeleccionado.app_pat}} {{ empleadoSeleccionado.app_mat}}</p>
+                <b>Telefonos del empleado:</b>
+                <p>{{empleadoSeleccionado.telefonos}}</p>
+                <b>NSS</b>
+                <p>{{empleadoSeleccionado.nss}}</p> <br>
+                <b>Direccion del empleado:</b>
+                <p>
+                    Calle y numero: {{empleadoSeleccionado.callenum}} <br>
+                    Colonia: {{empleadoSeleccionado.colonia}} <br>
+                    Poblacion: {{empleadoSeleccionado.poblacion}} <br>
+                    Municipio: {{empleadoSeleccionado.municipio}} <br>
+                    Estado: {{empleadoSeleccionado.estado}} <br>
+                </p> <br>
+                <b>Sucursal donde trabaja el empleado</b>
+                <p>{{empleadoSeleccionado.sucursal_nombre}}</p> <br>
+                <b>Puesto del empleado</b>
+                <p>{{empleadoSeleccionado.puesto}}</p>
+                <b>Fecha en que se registro al empleado</b>
+                <p>{{empleadoSeleccionado.fecha_alta}}</p><br>
+                <b>El empleado {{empleadoSeleccionado.derecho_esp}} cuenta con permisos especiales</b> <br>
+                <b>Estatus del empleado</b>
+                <p>{{empleadoSeleccionado.status}}</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div id="verUsuario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Usuario {{empleadoSeleccionado.nombres}} {{empleadoSeleccionado.app_pat}} 
+                    <a class="anchorjs-link" href="#myModalLabel"><span class="anchorjs-icon"></span></a>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Password</th>
+                        </tr>
+                        <tr>
+                            <th>{{usuarioSeleccionado.usuario}}</th>
+                            <th>
+                                <div *ngIf="mostrar">
+                                    {{usuarioSeleccionado.password}} <a (click)="visible(false)" class="btn btn-warning"><i class="fa fa-eye-slash"></i></a>
+                                </div>
+                                <div *ngIf="!mostrar">
+                                    <a (click)="visible(true)" class="btn btn-yellow"><i class="fa fa-eye"></i></a>
+                                </div>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div id="editar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Editar empleado
+                        <a class="anchorjs-link" href="#myModalLabel"><span class="anchorjs-icon"></span></a>
+                    </h4>
+                </div>
+                <div class="modal-body">
+    
+                        <form #empleadoForm="ngForm"  class="" id="empleadoForm">
+                                <label>
+                                    Nombres: 
+                                    <span class="label label-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es valido</span> 
+                                </label>
+                                <input type="text" #nombre="ngModel" [(ngModel)]="empleadoSeleccionado.nombres" class="form-control" name="nombre" required>
+                  
+                                <label>
+                                    Apellido paterno:
+                                    <span class="label label-danger" *ngIf="!apppat.valid && apppat.touched">El apellido no es valido</span> 
+                                </label>
+                                <input type="text" #apppat="ngModel" [(ngModel)]="empleadoSeleccionado.app_pat" class="form-control" name="apppat" required>
+                  
+                                <label>
+                                    Apellido materno:
+                                    <span class="label label-danger" *ngIf="!appmat.valid && appmat.touched">El apellido no es valido</span> 
+                                </label>
+                                <input type="text" #appmat="ngModel" [(ngModel)]="empleadoSeleccionado.app_mat" class="form-control" name="appmat" required>
+                  
+                                <label>
+                                    Calle y numero:
+                                    <span class="label label-danger" *ngIf="!callenum.valid && callenum.touched">La calle y el numero no son validos</span> 
+                                </label>
+                                <input type="text" #callenum="ngModel" [(ngModel)]="empleadoSeleccionado.callenum" class="form-control" name="callenum" required>
+                  
+                                <label>
+                                    Colonia:
+                                    <span class="label label-danger" *ngIf="!colonia.valid && colonia.touched">La colonia no es valida</span> 
+                                </label>
+                                <input type="text" #colonia="ngModel" [(ngModel)]="empleadoSeleccionado.colonia" class="form-control" name="colonia" required>
+                  
+                                <label>
+                                    Estado:
+                                    <span class="label label-danger" *ngIf="!estados.valid && estados.touched">El estado no es valido</span> 
+                                </label>
+                                <select #estados="ngModel" [(ngModel)]="empleadoSeleccionado.estado"  name="estados" class="form-control m-bot15 " required>
+                                        <option value="AGUASCALIENTES">Aguascalientes</option>
+                                        <option value="BAJA CALIFORNIA">Baja California</option>
+                                        <option value="BAJA CALIFORNIA SUR">Baja California Sur</option>
+                                        <option value="CAMPECHE">Campeche</option>
+                                        <option value="COAHUILA DE ZARAGOZA">Coahuila de Zaragoza</option>
+                                        <option value="COLIMA">Colima</option>
+                                        <option value="CHIAPAS">Chiapas</option>
+                                        <option value="CHIHUAHUA">Chihuahua</option>
+                                        <option value="DISTRITO FEDERAL">Distrito Federal</option>
+                                        <option value="DURANGO">Durango</option>
+                                        <option value="GUANAJUATO">Guanajuato</option>
+                                        <option value="GUERRERO">Guerrero</option>
+                                        <option value="HIDALGO">Hidalgo</option>
+                                        <option value="JALISCO">Jalisco</option>
+                                        <option value="MEXICO">México</option>
+                                        <option value="MICHOACAN DE OCAMPO">Michoacán de Ocampo</option>
+                                        <option value="MORELOS">Morelos</option>
+                                        <option value="NAYARIT">Nayarit</option>
+                                        <option value="NUEVO LEON">Nuevo León</option>       
+                                        <option value="OAXACA">Oaxaca</option>
+                                        <option value="PUEBLA">Puebla</option>
+                                        <option value="QUERETARO">Querétaro</option>
+                                        <option value="QUINTANA ROO">Quintana Roo</option>
+                                        <option value="SAN LUIS POTOSI">San Luis Potosí</option>
+                                        <option value="SINALOA">Sinaloa</option>
+                                        <option value="SONORA">Sonora</option>
+                                        <option value="TABASCO">Tabasco</option>
+                                        <option value="TAMAULIPAS">Tamaulipas</option>
+                                        <option value="TLAXCALA">Tlaxcala</option>
+                                        <option value="VERACRUZ">Veracruz</option>
+                                        <option value="YUCATAN">Yucatán</option>
+                                        <option value="ZACATECAS">Zacatecas</option>
+                                </select>
+                  
+                                <label>
+                                    Municipio:
+                                    <span class="label label-danger" *ngIf="!municipio.valid && municipio.touched">El municipio no es valido</span> 
+                                </label>
+                                <input type="text" #municipio="ngModel" [(ngModel)]="empleadoSeleccionado.municipio" class="form-control" name="municipio" required>
+                  
+                                <label>
+                                    Poblacion:
+                                    <span class="label label-danger" *ngIf="!poblacion.valid && poblacion.touched">La poblacion no es valida</span> 
+                                </label>
+                                <input type="text" #poblacion="ngModel" [(ngModel)]="empleadoSeleccionado.poblacion" class="form-control" name="poblacion" required>
+                  
+                                <label>
+                                    Telefono:
+                                    <span class="label label-danger" *ngIf="!telefono.valid && telefono.touched">El telefono no es valido</span> 
+                                </label>
+                                <input type="tel" #telefono="ngModel" [(ngModel)]="empleadoSeleccionado.telefonos" class="form-control" name="telefono" (keypress)="validarTel()"  placeholder="(xxx)yyy-zzzz" pattern="^\([0-9]{3}\)[0-9]{3}-[0-9]{4}" maxlength="13" minlength="13" required>
+                                <label>
+                                      No. Seguridad Social:
+                                      <span class="label label-danger" *ngIf="!nss.valid && nss.touched">El numero de segurudad social no es valido</span> 
+                                  </label>
+                                  <input type="text" maxlength="11" minlength="11" #nss="ngModel" [(ngModel)]="empleadoSeleccionado.nss" class="form-control" name="nss" placeholder="11 digitos" pattern="[0-9]{11}" required>
+                                  
+                                <label>
+                                    Sucursal:
+                                    <span class="label label-danger" *ngIf="!sucursal.valid && sucursal.touched">El nombre de al sucursal no es valida</span> 
+                                </label>
+                                <select  #sucursal="ngModel" [(ngModel)]="empleadoSeleccionado.idsucursal"  name="sucursal"   class="form-control m-bot15" required>
+                                    <option value="{{sucursal.idsucursal}}" *ngFor="let sucursal of sucursales">{{sucursal.nombre}}</option>
+                                </select>
+                                
+                                <label>
+                                    Puesto:
+                                    <span class="label label-danger" *ngIf="!puesto.valid && puesto.touched">El puesto no es valido</span> 
+                                </label>
+                                <select #puesto="ngModel" [(ngModel)]="empleadoSeleccionado.puesto" class="form-control m-bot15 " name="puesto" required>
+                                    <option value="SUPERVISOR">Supervisor</option>
+                                    <option value="CAPTURISTA">Capturista</option>
+                                    <option value="COBRADOR">Cobrador</option>
+                                </select>
+                                <label>
+                                      Acceso a todos los créditos
+                                    <span class="label label-danger" *ngIf="!derechosEsp.valid && derechosEsp.touched">El puesto no es valido</span> 
+                                </label>
+                                <select class="form-control m-bot15 " #derechosEsp="ngModel" [(ngModel)]="empleadoSeleccionado.derecho_esp" name="derechosEsp" id="derechosEsp" required>
+                                    <option value="SI">Si</option>
+                                    <option value="NO" selected="selected">No</option>
+                                </select>
+                            
+                                <br>
+                                <!-- boton guardar -->
+                        </form>
+    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" [disabled]="!empleadoForm.form.valid" (click)="updateEmpleado();limpiarForm(empleadoForm)">Guardar cambios</button>
+                    <button type="button" class="btn btn-gray">Limpiar formulario</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
